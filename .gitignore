@@ -10,7 +10,9 @@ __pycache__/
 /neerslag/data/2020
 /neerslag/data/2021
 /neerslag/data/2022
-/BAG/read_xml_scripts/data
+/BAG/read_xml_scripts/data/9999OPR08012023
+/BAG/read_xml_scripts/data/9999VBO08012023
+/BAG/read_xml_scripts/data/csv
 # C extensions
 *.so
 
