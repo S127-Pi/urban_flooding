@@ -10,6 +10,7 @@ __pycache__/
 /neerslag/data/2020
 /neerslag/data/2021
 /neerslag/data/2022
+/BAG/data
 # C extensions
 *.so
 
