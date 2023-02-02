@@ -13,6 +13,7 @@ __pycache__/
 /BAG/read_xml_scripts/data/9999OPR08012023
 /BAG/read_xml_scripts/data/9999VBO08012023
 /BAG/read_xml_scripts/data/csv
+/BAG/read_xml_scripts/data/tmp
 # C extensions
 *.so
 
