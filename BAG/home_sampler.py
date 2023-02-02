@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 # import geopy.distance
 import os
+import warnings
+
+warnings.filterwarnings("ignore")
 
 LATDEGREE = 111000
 
@@ -14,7 +17,7 @@ class HomeSampler(object):
 		dire = os.path.dirname(__file__)
 		if dire:
 			dire += '/'
-		self.df = pd.read_csv(dire + 'verblijfplaatsen.csv')
+		self.df = pd.read_csv(dire + 'read_xml_scripts/data/csv/verblijfplaatsen_longer.csv')
 		# self.df = pd.read_csv(dire + 'data/verblijfplaatsen_shorter.csv')
 		self.df = self.df.dropna(axis=0)
 		self.df = self.df.astype({"x": float, "y": float})
