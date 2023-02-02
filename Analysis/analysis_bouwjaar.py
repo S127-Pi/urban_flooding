@@ -10,8 +10,8 @@ from sklearn import metrics
 from matplotlib import pyplot as plt
 
 begin_path = path.abspath(path.join(__file__ ,"../../../.."))
-resultFolder = f"{begin_path}/results/result_texts"
-resultFile = open(resultFolder + "result_precise_bouwjaar_wl_bouwjaar.txt", "w+") 
+# resultFolder = f"{begin_path}/results/result_texts"
+resultFile = open("result_precise_bouwjaar_wl_bouwjaar.txt", "w+") 
 column = 'layers'
 def normalize(row):
         height = row[column]
