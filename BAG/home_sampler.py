@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
 	print(HM.sample_in_range(155000, 463000, 1500, 1000,10))
 
-	print(HM.sample_in_range(155000, 463000, 1500, 1000,10))
+	# print(HM.sample_in_range(155000, 463000, 1500, 1000,10))
 
 
 

@@ -1,5 +1,5 @@
 from osgeo import gdal
-from BAG import rdconverter
+import rdconverter
 
 from owslib.wcs import WebCoverageService
 
@@ -36,7 +36,7 @@ class AHNLayer(Layer):
 	def get_gdal_dataset(self, x_min, x_max, y_min, y_max, **kwargs):
 		dsm = True
 		my_wcs = WebCoverageService(
-		    'https://geodata.nationaalgeoregister.nl/ahn3/wcs', version='1.0.0')
+		    'https://service.pdok.nl/rws/ahn3/wcs/v1_0?', version='1.0.0')
 
 		identifier = 'ahn3_05m_dsm' if dsm else 'ahn3_05m_dtm'
 		output = my_wcs.getCoverage(identifier=identifier, width=2*round(x_max-x_min), height=2*round(

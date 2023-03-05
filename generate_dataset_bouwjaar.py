@@ -1,6 +1,6 @@
 # Code from Thijs Simons is used: https://github.com/SimonsThijs/wateroverlast
 # import rdconverter
-from BAG import rdconverter
+import rdconverter
 from neerslag import precipitation_nl
 from layer import ahn_layer
 from datetime import datetime
@@ -8,6 +8,7 @@ import pandas as pd
 import random
 import time
 import os 
+from BAG import home_sampler
 
 # Date time variables
 begin = '2016-01-02 00:00:00'
@@ -16,9 +17,8 @@ strfformat = "%Y-%m-%d %H:%M:%S"
 strfformat_ensurance = "%d/%m/%Y"
 
 dire = os.path.dirname(__file__)
-dir_ = f'{dire}/../data/'
-input_file = f"merged_precise_coord_transformed_bouwjaar.json"
-output_file = f'pkls/precise_bouwjaar.pkl'
+input_file = "/merged_precise_coord_transformed_bouwjaar.json"
+output_file = "precise_bouwjaar3.pkl"
 
 # Time variables
 total = 0
@@ -91,7 +91,7 @@ def get_past3hours(date, lat, lon):
 
 
 # Step 1: Loading file and assigning target value
-df1 = pd.read_json(dir_ + input_file)
+df1 = pd.read_json(dire + input_file)
 df1 = df1.dropna()
 df1['target'] = 1
 
@@ -110,7 +110,7 @@ df1['past3hours'] = df1.apply(get_precipitation_data, axis=1)
 # Step 4: Filter out water damage notifications which are not caused by rain
 df1 = df1[(df1.past3hours > rain_treshold)]
 
-# Step 5: Add height layer as a feature
+# #Step 5: Add height layer as a feature
 total = len(df1)
 count = 0
 btime = time.time()
@@ -149,26 +149,57 @@ def add_layers(data):
 
 
 df1['layers'] = df1.apply(add_layers, axis=1)
-df1 = df1.drop(columns=['lat', 'lng'])
+# df1 = df1.drop(columns=['lat', 'lng'])
 
 # Step 6: Add negative examples
-data0 = {'target': [], 'past3hours': [], 'layers': [], "date": [], 'bouwjaar':[]}
+# data0 = {'target': [], 'past3hours': [], 'layers': [], "date": [], 'bouwjaar':[]}
+data0 = {'target': [],'lat':[], 'lng':[], 'date':[], 'bouwjaar':[]}
 
+HM = home_sampler.HomeSampler()
+n = 1
+def sample_random_houses_close(data):
+    rdx = rdconverter.gps2X(data['lat'],data['lng'])
+    rdy = rdconverter.gps2Y(data['lat'],data['lng'])
+    da = HM.sample_in_range(rdx, rdy, 500, 50, n)
+    for d in da:
+        lat = rdconverter.RD2lat(d[0], d[1])
+        lng = rdconverter.RD2lng(d[0], d[1])
+        #need a code prevent bias
+        data0['bouwjaar'].append(data['bouwjaar'])
+        data0['lat'].append(lat)
+        data0['lng'].append(lng)
+        data0['date'].append(data['date'])
+        data0['target'].append(0)
 
-def sample_dependent(data):
-    data0['bouwjaar'].append(data['bouwjaar'])
-    data0['target'].append(0)
-    max_rain = data["past3hours"]
-    data0["past3hours"].append(random.randint(rain_treshold, max_rain))
-    data0["layers"].append(data["layers"])
-    data0["date"].append(data["date"])
-
-
-df1.apply(sample_dependent, axis=1)
+df1.apply(sample_random_houses_close, axis=1)
+print("error")
 df0 = pd.DataFrame(data0)
+print("no error")
+# def sample_dependent(data):
+#     data0['bouwjaar'].append(data['bouwjaar'])
+#     data0['target'].append(0)
+#     max_rain = data["past3hours"]
+#     data0["past3hours"].append(random.randint(rain_treshold, max_rain))
+#     data0["layers"].append(data["layers"])
+#     data0["date"].append(data["date"])
+# df1.apply(sample_dependent, axis=1)
+
+
+total = len(df0)
+count = 0
+btime = time.time()
+df0 = df0.sort_values(by=['date'])
+df0['past3hours'] = df0.apply(get_precipitation_data, axis=1)
+
+# df0['layers'] = df0.apply(add_layers, axis=1)
+ahn = ahn_layer.AHNLayer()
+total = len(df0)
+count = 0
+btime = time.time()
+df0['layers'] = df0.apply(add_layers, axis=1)
 
 df = pd.concat([df0, df1], ignore_index=True)
 
 # Step 7: Output dataframe as pkl to keep the size of the file small
 print(df)
-df.to_pickle(dir_ + output_file, protocol=4)
+df.to_pickle(f"{dire}/pkl/{output_file}", protocol=4)

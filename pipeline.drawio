@@ -1,0 +1,66 @@
+<mxfile host="65bd71144e">
+    <diagram id="KJDzvls8TzEorpHb3aZp" name="Page-1">
+        <mxGraphModel dx="589" dy="486" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="15" value="" style="group;align=center;whiteSpace=wrap;labelBackgroundColor=default;" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="60" y="195" width="155" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#FFFFFF;" parent="15" vertex="1">
+                    <mxGeometry x="-15" y="-30.83" width="155" height="280.83" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="P2000 notifcations" style="rounded=1;whiteSpace=wrap;labelBackgroundColor=default;" parent="15" vertex="1">
+                    <mxGeometry width="120" height="46.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Enrich with rain data" style="rounded=1;whiteSpace=wrap;labelBackgroundColor=default;" parent="15" vertex="1">
+                    <mxGeometry y="92.5" width="120" height="46.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="edgeStyle=none;labelBackgroundColor=default;" parent="15" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Obtain positive cases" style="rounded=1;whiteSpace=wrap;labelBackgroundColor=default;" parent="15" vertex="1">
+                    <mxGeometry y="185" width="120" height="46.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="edgeStyle=none;labelBackgroundColor=default;" parent="15" source="4" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Filtering" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;whiteSpace=wrap;labelBackgroundColor=default;" parent="15" vertex="1">
+                    <mxGeometry x="80" y="154.16666666666669" width="60" height="23.125" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="edgeStyle=none;html=0;labelBackgroundColor=#FFFFFF;" parent="1" source="17" target="28" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="294" y="158.34" width="126" height="302.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="edgeStyle=none;html=0;labelBackgroundColor=#FFFFFF;" parent="1" source="16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="290" y="305" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="edgeStyle=none;html=0;labelBackgroundColor=#FFFFFF;" parent="1" source="23" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Sample negative cases using adress sampling" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="294" y="210" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Enrich with rain data" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="294" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="494" y="154.59" width="120" height="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="edgeStyle=none;html=0;labelBackgroundColor=#FFFFFF;" parent="1" source="30" target="31" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Merge positive and negative cases" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="494" y="210" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Add height layers" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="494" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
