@@ -12,13 +12,13 @@ from BAG import home_sampler
 
 # Date time variables
 begin = '2016-01-02 00:00:00'
-end = '2022-01-30 23:59:59'
+end = '2022-12-31 23:59:59'
 strfformat = "%Y-%m-%d %H:%M:%S"
 strfformat_ensurance = "%d/%m/%Y"
 
 dire = os.path.dirname(__file__)
 input_file = "/precise_w_transformed.json"
-output_file = "precise_1_ouput_without_postcode.pkl"
+output_file = "precise_1_output_without_postcode.pkl"
 
 # Time variables
 total = 0
@@ -157,11 +157,12 @@ df1['layers'] = df1.apply(add_layers, axis=1)
 data0 = {'target': [],'lat':[], 'lng':[], 'date':[]}
 
 HM = home_sampler.HomeSampler()
-n = 1
+n = 10
 def sample_random_houses_close(data):
     rdx = rdconverter.gps2X(data['lat'],data['lng'])
     rdy = rdconverter.gps2Y(data['lat'],data['lng'])
     da = HM.sample_in_range(rdx, rdy, 500, 50, n)
+    da = [random.choice(da)]
     for d in da:
         lat = rdconverter.RD2lat(d[0], d[1])
         lng = rdconverter.RD2lng(d[0], d[1])
